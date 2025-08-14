@@ -28,9 +28,10 @@ export default function Page() {
           subtitle="From raw camera footage to AI‑generated worlds — I craft emotionally resonant films that move audiences and move brands."
           ctaPrimary={{ href: "#projects", label: "View Work", icon: "Play" }}
           ctaSecondary={{ href: "#contact", label: "Start a Project", icon: "Sparkles" }}
-          videoSrc="/videos/anime_videos/final_hero.mp4"
+          videoSrc="https://res.cloudinary.com/dbdwavjez/video/upload/q_auto,f_auto,w_960/v1755177584/FIna_480_hero_bbn0ck.mp4"
         />
       </header>
+
 
       <Section
         id="about"
@@ -83,7 +84,7 @@ export default function Page() {
           {services.map((s) => (
             <ServiceCard key={s.slug} service={s} />
           ))}
-        </div>
+        </div>  
 
         <div className="mt-10 grid gap-6 md:grid-cols-3">
           <div className="rounded-xl border border-white/10 p-6">
@@ -99,7 +100,7 @@ export default function Page() {
             </p>
           </div>
           <div className="rounded-xl border border-white/10 p-6">
-            <h4 className="text-lg font-semibold">Real Estate Films</h4>
+            <h4 className="text-lg font-semibold">Real Estate Fi  lms</h4>
             <p className="mt-2 text-sm text-muted-foreground">
               Showcase properties with cinematic movement and graded light that feels timeless.
             </p>
