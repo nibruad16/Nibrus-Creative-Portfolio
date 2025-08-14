@@ -23,13 +23,11 @@ export default function Page() {
     <main className="min-h-screen bg-black text-white">
       <Navbar />
       <header id="home" className="relative overflow-hidden">
-        <AnimatedHero
-          title="Cinematic Storytelling meets AI Innovation"
-          subtitle="From raw camera footage to AI‑generated worlds — I craft emotionally resonant films that move audiences and move brands."
-          ctaPrimary={{ href: "#projects", label: "View Work", icon: "Play" }}
-          ctaSecondary={{ href: "#contact", label: "Start a Project", icon: "Sparkles" }}
-          videoSrc="https://res.cloudinary.com/dbdwavjez/video/upload/q_auto,f_auto,w_960/v1755177584/FIna_480_hero_bbn0ck.mp4"
-        />
+          <AnimatedHero
+            ctaPrimary={{ href: "#projects", label: "View Work", icon: "Play" }}
+            ctaSecondary={{ href: "#contact", label: "Start a Project", icon: "Sparkles" }}
+            videoSrc="https://res.cloudinary.com/dbdwavjez/video/upload/q_auto,f_auto,w_960/v1755177584/FIna_480_hero_bbn0ck.mp4"
+          />
       </header>
 
 

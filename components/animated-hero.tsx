@@ -9,8 +9,8 @@ import { Play, Sparkles } from "lucide-react"
 type CTA = { href: string; label: string; icon?: string }
 
 export function AnimatedHero({
-  title = "Cinematic Storytelling meets AI Innovation",
-  subtitle = "From raw camera footage to AI‑generated worlds — I craft emotionally resonant films that move audiences and move brands.",
+  title = "AI Video & Image Specialist Cinematic Post-Production",
+  subtitle = "I create stunning, impossible visuals that tell a story.",
   ctaPrimary = { href: "#projects", label: "View Work" },
   ctaSecondary = { href: "#contact", label: "Start a Project" },
   videoSrc = "/hero-reel.mp4",
