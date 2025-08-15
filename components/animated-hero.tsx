@@ -128,7 +128,7 @@ function VideoBackground({
 }: {
   src: string
   poster?: string
-  videoRef: React.RefObject<HTMLVideoElement>
+  videoRef: React.RefObject<HTMLVideoElement | null>
   muted: boolean
 }) {
   return (
