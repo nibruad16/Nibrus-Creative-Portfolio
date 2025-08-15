@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Mail, Phone, Play, Sparkles, Star, Award, Zap } from "lucide-react"
+import { ArrowRight, Mail, Phone, Play, Sparkles } from "lucide-react"
 import Link from "next/link"
 import { Navbar } from "@/components/navbar"
 import { AnimatedHero } from "@/components/animated-hero"
@@ -31,6 +31,7 @@ export default function Page() {
           />
       </header>
 
+
       <Section
         id="about"
         eyebrow="About"
@@ -38,36 +39,21 @@ export default function Page() {
         description="I blend classic editorial sensibilities with the latest generative tools. Technology is my brush, story is my canvas — and your brand is the gallery."
       >
         <div className="grid gap-8 md:grid-cols-2 items-start">
-          <div className="space-y-6 text-white/70 md:order-1">
-            <p className="text-lg leading-relaxed">
+          <div className="space-y-6 text-muted-foreground md:order-1">
+            <p className="text-base leading-relaxed">
               I partner with filmmakers, brands, and innovators to navigate the entire landscape of modern video
               production — from cinematic post to AI‑generated visuals. Every frame serves the narrative.
             </p>
-            <div className="space-y-4">
-              <h4 className="text-lg font-semibold text-white/90 flex items-center gap-2">
-                <Star className="h-5 w-5 text-amber-400" />
-                Professional Tools & Expertise
-              </h4>
-              <ul className="space-y-3">
-                <li className="flex items-start">
-                  <div className="h-1.5 w-1.5 rounded-full bg-amber-400 mt-2 mr-3 flex-shrink-0"></div>
-                  <span className="text-white/70">DaVinci Resolve Studio, Adobe Premiere Pro, After Effects</span>
-                </li>
-                <li className="flex items-start">
-                  <div className="h-1.5 w-1.5 rounded-full bg-amber-400 mt-2 mr-3 flex-shrink-0"></div>
-                  <span className="text-white/70">State‑of‑the‑art Generative AI Models</span>
-                </li>
-                <li className="flex items-start">
-                  <div className="h-1.5 w-1.5 rounded-full bg-amber-400 mt-2 mr-3 flex-shrink-0"></div>
-                  <span className="text-white/70">Color grading, SFX, VFX, CGI, sound design</span>
-                </li>
+            <ul className="listj-disc pl-6 space-y-3 text-sm">
+              <li>DaVinci Resolve Studio, Adobe Premiere Pro, After Effects</li>
+              <li>State‑of‑the‑art Generative AI Models</li>
+              <li>Color grading, SFX, VFX, CGI, sound design</li>
             </ul>
-            </div>
             <div className="flex gap-4 pt-4">
-              <Button asChild variant="secondary" className="px-6 py-3 bg-gradient-to-r from-amber-500/10 to-orange-500/10 border border-amber-500/20 text-amber-400 hover:from-amber-500/20 hover:to-orange-500/20 hover:border-amber-500/40">
+              <Button asChild variant="secondary" className="px-6 py-2">
                 <a href="#services">Explore Services</a>
               </Button>
-              <Button asChild className="px-6 py-3 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white">
+              <Button asChild className="px-6 py-2">
                 <a href="#contact">
                   Let&apos;s talk <ArrowRight className="ml-2 h-4 w-4" />
                 </a>
@@ -81,7 +67,7 @@ export default function Page() {
       </Section>
 
       <Section
-        id="services" 
+        id="services"
         eyebrow="Services"
         title="Two paths, one vision"
         description="Choose your path: camera‑shot cinematic post or AI‑generated creation — or blend both with hybrid filmmaking."
@@ -92,31 +78,22 @@ export default function Page() {
           ))}
         </div>  
 
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
-          <div className="rounded-xl border border-white/10 p-6 bg-gradient-to-br from-amber-500/5 to-orange-500/5 hover:from-amber-500/10 hover:to-orange-500/10 transition-all duration-300">
-            <h4 className="text-lg font-semibold text-white/90 flex items-center gap-2">
-              <Award className="h-5 w-5 text-amber-400" />
-              Travel Videos
-            </h4>
-            <p className="mt-3 text-sm text-white/70">
+        <div className="mt-10 grid gap-6 md:grid-cols-3">
+          <div className="rounded-xl border border-white/10 p-6">
+            <h4 className="text-lg font-semibold">Travel Videos</h4>
+            <p className="mt-2 text-sm text-muted-foreground">
               Capture the soul of a place with evocative pacing, immersive sound, and color that breathes.
             </p>
           </div>
-          <div className="rounded-xl border border-white/10 p-6 bg-gradient-to-br from-amber-500/5 to-orange-500/5 hover:from-amber-500/10 hover:to-orange-500/10 transition-all duration-300">
-            <h4 className="text-lg font-semibold text-white/90 flex items-center gap-2">
-              <Star className="h-5 w-5 text-amber-400" />
-              Luxury Branding
-            </h4>
-            <p className="mt-3 text-sm text-white/70">
+          <div className="rounded-xl border border-white/10 p-6">
+            <h4 className="text-lg font-semibold">Luxury Branding</h4>
+            <p className="mt-2 text-sm text-muted-foreground">
               Craft elevated visuals that speak in the visual language of scarcity, texture, and desire.
             </p>
           </div>
-          <div className="rounded-xl border border-white/10 p-6 bg-gradient-to-br from-amber-500/5 to-orange-500/5 hover:from-amber-500/10 hover:to-orange-500/10 transition-all duration-300">
-            <h4 className="text-lg font-semibold text-white/90 flex items-center gap-2">
-              <Zap className="h-5 w-5 text-amber-400" />
-              Real Estate Films
-            </h4>
-            <p className="mt-3 text-sm text-white/70">
+          <div className="rounded-xl border border-white/10 p-6">
+            <h4 className="text-lg font-semibold">Real Estate Fi  lms</h4>
+            <p className="mt-2 text-sm text-muted-foreground">
               Showcase properties with cinematic movement and graded light that feels timeless.
             </p>
           </div>
@@ -129,41 +106,29 @@ export default function Page() {
         id="contact"
         eyebrow="Contact"
         title="Tell me your vision"
-        description="Whether you have a hard drive full of footage or just the spark of an idea — I'm ready to create with you."
+        description="Whether you have a hard drive full of footage or just the spark of an idea — I’m ready to create with you."
       >
         <div className="grid gap-8 md:grid-cols-2">
           <ContactForm />
           <div className="space-y-6">
-            <div className="rounded-xl border border-white/10 p-6 bg-gradient-to-br from-amber-500/5 to-orange-500/5">
-              <h4 className="font-semibold text-white/90 flex items-center gap-2">
-                <Star className="h-5 w-5 text-amber-400" />
-                What to include
-              </h4>
-              <ul className="mt-3 space-y-2">
-                <li className="flex items-start">
-                  <div className="h-1.5 w-1.5 rounded-full bg-amber-400 mt-2 mr-3 flex-shrink-0"></div>
-                  <span className="text-sm text-white/70">Goal, audience, and references</span>
-                </li>
-                <li className="flex items-start">
-                  <div className="h-1.5 w-1.5 rounded-full bg-amber-400 mt-2 mr-3 flex-shrink-0"></div>
-                  <span className="text-sm text-white/70">Footage status (shot vs. to be generated)</span>
-                </li>
-                <li className="flex items-start">
-                  <div className="h-1.5 w-1.5 rounded-full bg-amber-400 mt-2 mr-3 flex-shrink-0"></div>
-                  <span className="text-sm text-white/70">Timeline and budget range</span>
-                </li>
+            <div className="rounded-xl border border-white/10 p-6">
+              <h4 className="font-semibold">What to include</h4>
+              <ul className="mt-2 list-disc pl-5 text-sm text-muted-foreground space-y-2">
+                <li>Goal, audience, and references</li>
+                <li>Footage status (shot vs. to be generated)</li>
+                <li>Timeline and budget range</li>
               </ul>
             </div>
             <div className="flex flex-col gap-3">
               <a
                 href="mailto:hello@example.com"
-                className="inline-flex items-center gap-2 text-sm text-white/70 hover:text-amber-400 transition-colors duration-300"
+                className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-white"
               >
                 <Mail className="h-4 w-4" /> hello@example.com
               </a>
               <a
                 href="tel:+10000000000"
-                className="inline-flex items-center gap-2 text-sm text-white/70 hover:text-amber-400 transition-colors duration-300"
+                className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-white"
               >
                 <Phone className="h-4 w-4" /> +1 (000) 000‑0000
               </a>
@@ -178,6 +143,7 @@ export default function Page() {
 }
 
 function ProjectsSection() {
+  // Note: Next.js runs fully in-browser; keep interactions simple
   return (
     <Section
       id="projects"
@@ -185,7 +151,7 @@ function ProjectsSection() {
       title="Projects"
       description="A curated mix across travel, luxury branding, real estate, and commercial content."
     >
-      <Suspense fallback={<div className="text-white/70">Loading projects…</div>}>
+      <Suspense fallback={<div className="text-muted-foreground">Loading projects…</div>}>
         <ProjectsGrid />
       </Suspense>
     </Section>
@@ -193,17 +159,21 @@ function ProjectsSection() {
 }
 
 function ProjectsGrid() {
+  // Simple category filter (client-side)
+  // Next.js can't infer props, but here we keep local state simple via a client island pattern
   return <ClientProjectsGrid />
 }
 
+// Small client component island
 function ClientProjectsGrid() {
   return (
     <div suppressHydrationWarning>
+      {/* We render all projects statically for now to avoid complex state in Next.js */}
       <div className="mb-6 flex flex-wrap gap-2">
         {categories.map((c) => (
           <span
             key={c}
-            className="select-none rounded-full border border-amber-500/30 px-3 py-1 text-xs text-amber-400 bg-gradient-to-r from-amber-500/10 to-orange-500/10 hover:from-amber-500/20 hover:to-orange-500/20 transition-all duration-300 cursor-pointer"
+            className="select-none rounded-full border border-white/15 px-3 py-1 text-xs text-muted-foreground"
           >
             {c}
           </span>
@@ -215,7 +185,7 @@ function ClientProjectsGrid() {
         ))}
       </div>
       <div className="mt-8 flex">
-        <Button asChild variant="secondary" className="bg-gradient-to-r from-amber-500/10 to-orange-500/10 border border-amber-500/20 text-amber-400 hover:from-amber-500/20 hover:to-orange-500/20 hover:border-amber-500/40">
+        <Button asChild variant="secondary">
           <Link href="/projects">Browse all projects</Link>
         </Button>
       </div>
