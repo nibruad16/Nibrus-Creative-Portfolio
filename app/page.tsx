@@ -11,6 +11,7 @@ import { ContactForm } from "@/components/contact-form"
 import { Footer } from "@/components/footer"
 import { services, projects, categories } from "@/lib/data"
 import { Suspense } from "react"
+import { ImageCarousel } from "@/components/image-carousel"
 
 export const metadata: Metadata = {
   title: "Creative Director | Cinematic Editing & AI Video Generation",
@@ -37,37 +38,30 @@ export default function Page() {
         title="A Story‑First Creative Director"
         description="I blend classic editorial sensibilities with the latest generative tools. Technology is my brush, story is my canvas — and your brand is the gallery."
       >
-        <div className="grid gap-8 md:grid-cols-2">
-          <div className="space-y-4 text-muted-foreground">
-            <p>
+        <div className="grid gap-8 md:grid-cols-2 items-start">
+          <div className="space-y-6 text-muted-foreground md:order-1">
+            <p className="text-base leading-relaxed">
               I partner with filmmakers, brands, and innovators to navigate the entire landscape of modern video
               production — from cinematic post to AI‑generated visuals. Every frame serves the narrative.
             </p>
-            <ul className="list-disc pl-5 space-y-2">
+            <ul className="list-disc pl-6 space-y-3 text-sm">
               <li>DaVinci Resolve Studio, Adobe Premiere Pro, After Effects</li>
               <li>State‑of‑the‑art Generative AI Models</li>
               <li>Color grading, SFX, VFX, CGI, sound design</li>
             </ul>
-            <div className="flex gap-3 pt-2">
-              <Button asChild variant="secondary">
+            <div className="flex gap-4 pt-4">
+              <Button asChild variant="secondary" className="px-6 py-2">
                 <a href="#services">Explore Services</a>
               </Button>
-              <Button asChild>
+              <Button asChild className="px-6 py-2">
                 <a href="#contact">
                   Let&apos;s talk <ArrowRight className="ml-2 h-4 w-4" />
                 </a>
               </Button>
             </div>
           </div>
-          <div className="relative aspect-video overflow-hidden rounded-xl ring-1 ring-white/10">
-            {/* Cinematic still / montage placeholder */}
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/placeholder-jxeck.png"
-              alt="Cinematic editing suite"
-              className="h-full w-full object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-tr from-black/60 via-black/20 to-transparent" />
+          <div className="flex justify-center md:justify-end md:order-2">
+            <ImageCarousel />
           </div>
         </div>
       </Section>
