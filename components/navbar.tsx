@@ -17,12 +17,12 @@ export function Navbar({ className = "" }: { className?: string }) {
   }, [])
 
   const navItems = [
-    { href: "#home", label: "Home" },
-    { href: "#about", label: "About" },
-    { href: "#services", label: "Services" },
-    { href: "#projects", label: "Projects" },
+    { href: "/#home", label: "Home" },
+    { href: "/#about", label: "About" },
+    { href: "/#services", label: "Services" },
+    { href: "/#projects", label: "Projects" },
     { href: "/tools", label: "Tools" },
-    { href: "#contact", label: "Contact" },
+    { href: "/#contact", label: "Contact" },
   ]
 
   return (
