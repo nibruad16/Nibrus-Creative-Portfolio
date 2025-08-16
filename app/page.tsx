@@ -2,13 +2,11 @@ import type { Metadata } from "next"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Mail, Phone, Play, Sparkles } from "lucide-react"
 import Link from "next/link"
-import { Navbar } from "@/components/navbar"
 import { AnimatedHero } from "@/components/animated-hero"
 import { Section } from "@/components/section"
 import { ServiceCard } from "@/components/service-card"
 import { ProjectCard } from "@/components/project-card"
 import { ContactForm } from "@/components/contact-form"
-import { Footer } from "@/components/footer"
 import { services, projects, categories } from "@/lib/data"
 import { Suspense } from "react"
 import { ImageCarousel } from "@/components/image-carousel"
@@ -22,7 +20,7 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <main className="min-h-screen bg-black text-white">
-      <Navbar />
+      {/* Removed <Navbar /> because it's now in layout.tsx */}
       <header id="home" className="relative overflow-hidden">
           <AnimatedHero
             ctaPrimary={{ href: "#projects", label: "View Work", icon: "Play" }}
@@ -30,7 +28,6 @@ export default function Page() {
             videoSrc="https://res.cloudinary.com/dbdwavjez/video/upload/q_auto,f_auto,w_960/v1755177584/FIna_480_hero_bbn0ck.mp4"
           />
       </header>
-
 
       <Section
         id="about"
@@ -74,7 +71,7 @@ export default function Page() {
       >
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {services.map((s) => (
-            <ServiceCard key={s.slug} service={s} />
+            <ServiceCard key={s.slug} service={s} />  
           ))}
         </div>  
 
@@ -136,8 +133,6 @@ export default function Page() {
           </div>
         </div>
       </Section>
-
-      <Footer />
     </main>
   )
 }
