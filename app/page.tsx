@@ -12,7 +12,7 @@ import { Suspense } from "react"
 import { ImageCarousel } from "@/components/image-carousel"
 
 export const metadata: Metadata = {
-  title: "AI Video & Image Specialist Cinematic Post-Production",
+  title: "Nibru Kefyalew",
   description: "I create stunning, impossible visuals that tell a story.",
 }
 

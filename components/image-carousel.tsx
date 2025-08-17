@@ -6,22 +6,10 @@ import { Button } from "@/components/ui/button"
 import { motion, AnimatePresence } from "framer-motion"
 
 const images = [
-  {
-    src: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=90",
-    alt: "Professional headshot in studio lighting"
-  },
-  {
-    src: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=800&q=90",
-    alt: "Creative director at work"
-  },
-  {
-    src: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=800&q=90",
-    alt: "Behind the scenes on set"
-  },
-  {
-    src: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=800&q=90",
-    alt: "Creative workspace and tools"
-  },
+  { src: "/ME/1.JPG", alt: "Nibru Kefyalew portrait 1" },
+  { src: "/ME/3.JPG", alt: "Nibru Kefyalew portrait 3" },
+  { src: "/ME/5.JPG", alt: "Nibru Kefyalew portrait 5" },
+  { src: "/ME/6.JPG", alt: "Nibru Kefyalew portrait 6" },
 ]
 
 export function ImageCarousel() {
