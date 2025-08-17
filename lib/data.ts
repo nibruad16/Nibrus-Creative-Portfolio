@@ -78,17 +78,14 @@ export const categories: string[] = [
 
 // Replace your projects array items with this shape (keep your real items)
 export const projects: Project[] = [
-  // VIDEO example
   {
     type: "video",
     slug: "brand-launch-spot",
     title: "Brand Launch Spot",
     category: "Commercial",
-    youtubeId: "https://youtu.be/1y_fqxdxlXU",
+    youtubeUrl: "https://youtu.be/1y_fqxdxlXU",
     description: "High‑impact 30s brand launch spot crafted for social reach.",
-    // cover: "/projects/brand-launch.jpg", // optional
   },
-  // IMAGE example
   {
     type: "image",
     slug: "ai-character-study",
@@ -122,17 +119,24 @@ export const projects: Project[] = [
     description: "Demo video with description under the player.",
     category: "Commercial",
   },
-
-{
+  {
     type: "video",
-    slug: "my-youtube-demo",
-    title: "YouTube Demo",
+    slug: "veo3-ad-1",
+    title: "Kids Probiotic Ad Campaign – Veo3",
     youtubeUrl: "https://youtu.be/uM7EY5hHNKc",
-    description: "Demo video with description under the player.",
+    description:
+      "Produced and edited promotional video ads for Veo3’s Kids Probiotic product. Crafted engaging, parent-friendly visuals with clear messaging, sound design, and motion graphics tailored for social media platforms. Ensured brand alignment and storytelling to enhance product appeal and audience trust..",
     category: "Commercial",
   },
-  
-
+  {
+    type: "video",
+    slug: "veo3-ad-2",
+    title: "Gorilla Delivery Man Ad – Veo3",
+    youtubeUrl: "https://youtu.be/aW6RJeC54WA",
+    description:
+      "Creative Ethiopian ad for Veo3 featuring a gorilla as a delivery man to humorously highlight fast and reliable service. Responsible for concept development, video editing, sound design, and social media optimization. The ad gained attention for its unique and memorable storytelling, blending local humor with product promotion to engage a wide audience.",
+    category: "Commercial",
+  },
   // ...keep/add your real projects here...
 ]
 

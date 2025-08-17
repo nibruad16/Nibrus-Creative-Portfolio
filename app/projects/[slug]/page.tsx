@@ -4,10 +4,11 @@ import { getProjectBySlug, type ImageProject } from "@/lib/data"
 import { extractYouTubeId } from "@/lib/youtube"
 import { Button } from "@/components/ui/button"
 
-type Params = { params: { slug: string } }
+type Params = { slug: string }
 
-export default function ProjectDetail({ params }: Params) {
-  const project = getProjectBySlug(params.slug)
+export default async function ProjectDetail({ params }: { params: Promise<Params> }) {
+  const { slug } = await params // Next.js 15 requires awaiting params
+  const project = getProjectBySlug(slug)
   if (!project) return notFound()
 
   return (
@@ -24,20 +25,14 @@ export default function ProjectDetail({ params }: Params) {
             description={project.description}
           />
         ) : (
-          <ImageView project={project} />
+          <ImageView project={project as ImageProject} />
         )}
       </Section>
     </main>
   )
 }
 
-function VideoView({
-  youtubeId,
-  description,
-}: {
-  youtubeId: string | null
-  description?: string
-}) {
+function VideoView({ youtubeId, description }: { youtubeId: string | null; description?: string }) {
   if (!youtubeId) return <div className="text-white/70">Invalid YouTube link.</div>
   return (
     <div className="mx-auto w-full max-w-4xl">
