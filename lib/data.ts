@@ -86,6 +86,15 @@ export const projects: Project[] = [
     youtubeUrl: "https://youtu.be/1y_fqxdxlXU",
     description: "High‑impact 30s brand launch spot crafted for social reach.",
   },
+
+  {
+    type: "video",
+    slug: "ad-for-trademate",
+    title: "Ad for TradeMate",  
+    category: "Commercial",
+    youtubeUrl: "https://youtu.be/oTZo8Ej4TJw",
+    description: "A creative and engaging advertisement for TradeMate, designed to showcase the brand’s value and connect with the target audience. The video uses clear messaging, smooth visuals, and professional editing to highlight TradeMate’s unique offerings and build brand trust.",
+  },
   {
     type: "image",
     slug: "ai-character-study",
@@ -169,6 +178,29 @@ export const projects: Project[] = [
       { src: "/Picters/16%20centery%20oromo%20worriro/20250817_1242_image%20(3).png", caption: "Concept — v4" },
     ],
   },
+  {
+    type: "image",
+    slug: "ai-images-collections",
+    title: "AI Images Collections",
+    category: "AI",
+    cover: "/Picters/AI%20images%20collections/IMG_5367.PNG",
+    description:
+      "A curated collection of AI-generated concepts across fashion and product styles.",
+    images: [
+      { src: "/Picters/AI%20images%20collections/Adidas%20Track%20Jacket%20Photoshoot.jpg", caption: "Adidas Track Jacket — Photoshoot" },
+      { src: "/Picters/AI%20images%20collections/Bowling%20Pepsi_.jpg", caption: "Bowling Pepsi — Concept" },
+      { src: "/Picters/AI%20images%20collections/IMG_5345.PNG", caption: "IMG 5345" },
+      { src: "/Picters/AI%20images%20collections/IMG_5346.PNG", caption: "IMG 5346" },
+      { src: "/Picters/AI%20images%20collections/IMG_5347.PNG", caption: "IMG 5347" },
+      { src: "/Picters/AI%20images%20collections/IMG_5348.PNG", caption: "IMG 5348" },
+      { src: "/Picters/AI%20images%20collections/IMG_5349.JPG", caption: "IMG 5349" },
+      { src: "/Picters/AI%20images%20collections/IMG_5350.JPG", caption: "IMG 5350" },
+      { src: "/Picters/AI%20images%20collections/IMG_5351.JPG", caption: "IMG 5351" },
+      { src: "/Picters/AI%20images%20collections/IMG_5352.PNG", caption: "IMG 5352" }, // () encoded
+      { src: "/Picters/AI%20images%20collections/IMG_5367.PNG", caption: "IMG 5367" },
+    ],
+  },
+
   // ...keep/add your real projects here...
 ]
 
