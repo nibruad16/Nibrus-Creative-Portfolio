@@ -81,7 +81,7 @@ export const projects: Project[] = [
   {
     type: "video",
     slug: "brand-launch-spot",
-    title: "Brand Launch Spot",
+    title: "Long form VEO 3 voice-over video",
     category: "Commercial",
     youtubeUrl: "https://youtu.be/1y_fqxdxlXU",
     description: "High‑impact 30s brand launch spot crafted for social reach.",
