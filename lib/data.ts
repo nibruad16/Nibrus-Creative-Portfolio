@@ -1,5 +1,5 @@
 import type { Service } from "@/components/service-card"
-import type { Project } from "@/components/project-card"
+// import type { Project } from "@/components/project-card" // remove this line
 import { Film, Stars, Scissors, Megaphone } from "lucide-react"
 
 export const services: Service[] = [
@@ -82,7 +82,7 @@ export const projects: Project[] = [
     type: "video",
     slug: "brand-launch-spot",
     title: "Long form VEO 3 voice-over video",
-    category: "Commercial",
+    category: "Com  mercial",
     youtubeUrl: "https://youtu.be/1y_fqxdxlXU",
     description: "High‑impact 30s brand launch spot crafted for social reach.",
   },
@@ -114,7 +114,7 @@ export const projects: Project[] = [
   {
     type: "video",
     slug: "my-youtube-demo",
-    title: "YouTube Demo",
+    title: "Cinematic Movie Editing with Sound Design",
     youtubeUrl: "https://youtu.be/9hmvcypEsHw",
     description: "Demo video with description under the player.",
     category: "Commercial",
@@ -136,6 +136,38 @@ export const projects: Project[] = [
     description:
       "Creative Ethiopian ad for Veo3 featuring a gorilla as a delivery man to humorously highlight fast and reliable service. Responsible for concept development, video editing, sound design, and social media optimization. The ad gained attention for its unique and memorable storytelling, blending local humor with product promotion to engage a wide audience.",
     category: "Commercial",
+  },
+  {
+    type: "image",
+    slug: "oromo-warrior-16th-century",
+    title: "16th‑Century Oromo Warrior — Study",
+    category: "AI",
+    cover:
+      "/Picters/16%20centery%20oromo%20worriro/Lucid_Origin_A_powerful_Oromo_warrior_woman_from_the_16th_cent_0.jpg",
+    description:
+      "Character exploration inspired by 16th‑century Oromo warrior aesthetics; multiple angles and moods.",
+    images: [
+      {
+        src: "/Picters/16%20centery%20oromo%20worriro/Lucid_Origin_A_powerful_Oromo_warrior_woman_from_the_16th_cent_0.jpg",
+        caption: "Portrait — look 1",
+      },
+      {
+        src: "/Picters/16%20centery%20oromo%20worriro/Lucid_Origin_A_powerful_Oromo_warrior_woman_from_the_16th_cent_1.jpg",
+        caption: "Portrait — look 2",
+      },
+      {
+        src: "/Picters/16%20centery%20oromo%20worriro/Lucid_Origin_A_powerful_Oromo_warrior_woman_from_the_16th_cent_2.jpg",
+        caption: "Portrait — look 3",
+      },
+      {
+        src: "/Picters/16%20centery%20oromo%20worriro/Lucid_Origin_A_powerful_Oromo_warrior_woman_from_the_16th_cent_3.jpg",
+        caption: "Portrait — look 4",
+      },
+      { src: "/Picters/16%20centery%20oromo%20worriro/20250817_1242_image.png", caption: "Concept — v1" },
+      { src: "/Picters/16%20centery%20oromo%20worriro/20250817_1242_image%20(1).png", caption: "Concept — v2" },
+      { src: "/Picters/16%20centery%20oromo%20worriro/20250817_1242_image%20(2).png", caption: "Concept — v3" },
+      { src: "/Picters/16%20centery%20oromo%20worriro/20250817_1242_image%20(3).png", caption: "Concept — v4" },
+    ],
   },
   // ...keep/add your real projects here...
 ]

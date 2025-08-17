@@ -12,9 +12,8 @@ import { Suspense } from "react"
 import { ImageCarousel } from "@/components/image-carousel"
 
 export const metadata: Metadata = {
-  title: "Creative Director | Cinematic Editing & AI Video Generation",
-  description:
-    "Portfolio of a Creative Director specializing in cinematic editing, color grading, SFX/VFX/CGI, and AI image/video generation. Travel, luxury branding, real estate, commercials.",
+  title: "AI Video & Image Specialist Cinematic Post-Production",
+  description: "I create stunning, impossible visuals that tell a story.",
 }
 
 export default function Page() {
