@@ -31,19 +31,18 @@ export default function Page() {
       <Section
         id="about"
         eyebrow="About"
-        title="A Story‑First Creative Director"
-        description="I blend classic editorial sensibilities with the latest generative tools. Technology is my brush, story is my canvas — and your brand is the gallery."
+        title="A Results-Driven Video Producer"
+        description="I combine cinematic editing techniques with AI-driven tools to create ad creatives and storytelling videos that capture attention and convert. Technology accelerates the process  strategy and storytelling drive the results."
       >
         <div className="grid gap-8 md:grid-cols-2 items-start">
           <div className="space-y-6 text-muted-foreground md:order-1">
             <p className="text-base leading-relaxed">
-              I partner with filmmakers, brands, and innovators to navigate the entire landscape of modern video
-              production — from cinematic post to AI‑generated visuals. Every frame serves the narrative.
+              I partner with e-commerce brands, startups, and content creators to deliver UGC ads, direct-response videos, and AI-generated content optimized for paid social. Every video is built with one goal in mind: helping your brand grow.
             </p>
             <ul className="listj-disc pl-6 space-y-3 text-sm">
-              <li>DaVinci Resolve Studio, Adobe Premiere Pro, After Effects</li>
-              <li>State‑of‑the‑art Generative AI Models</li>
-              <li>Color grading, SFX, VFX, CGI, sound design</li>
+              <li>Premiere Pro, After Effects, CapCut, DaVinci Resolve</li>
+              <li>Generative AI Tools (Google Veo & others)</li>
+              <li>UGC Ads, Short-Form Content, Paid Social Campaigns</li>
             </ul>
             <div className="flex gap-4 pt-4">
               <Button asChild variant="secondary" className="px-6 py-2">
@@ -59,6 +58,7 @@ export default function Page() {
           <div className="flex justify-center md:justify-end md:order-2">
             <ImageCarousel />
           </div>
+      
         </div>
       </Section>
 
@@ -66,7 +66,7 @@ export default function Page() {
         id="services"
         eyebrow="Services"
         title="Two paths, one vision"
-        description="Choose your path: camera‑shot cinematic post or AI‑generated creation — or blend both with hybrid filmmaking."
+        description="Choose your path: camera-shot cinematic post, AI-generated creation, or a hybrid approach. Every service is designed to deliver results for your brand."
       >
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {services.map((s) => (
@@ -102,7 +102,7 @@ export default function Page() {
         id="contact"
         eyebrow="Contact"
         title="Tell me your vision"
-        description="Whether you have a hard drive full of footage or just the spark of an idea — I’m ready to create with you."
+        description="Whether you have footage or just an idea, I’m ready to create content that elevates your brand and drives results."
       >
         <div className="grid gap-8 md:grid-cols-2">
           <ContactForm />
@@ -117,16 +117,22 @@ export default function Page() {
             </div>
             <div className="flex flex-col gap-3">
               <a
-                href="mailto:hello@example.com"
+                href="mailto:nibruad16@gmail.com"
                 className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-white"
               >
-                <Mail className="h-4 w-4" /> hello@example.com
+                <Mail className="h-4 w-4" /> nibruad16@gmail.com
               </a>
               <a
-                href="tel:+10000000000"
+                href="tel:+251993231617"
+                className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-white"
+              > 
+                <Phone className="h-4 w-4" /> +251 993231617
+              </a>
+              <a
+                href="tel:+251946942006"
                 className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-white"
               >
-                <Phone className="h-4 w-4" /> +1 (000) 000‑0000
+                <Phone className="h-4 w-4" /> +251 946942006
               </a>
             </div>
           </div>

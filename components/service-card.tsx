@@ -16,7 +16,7 @@ export function ServiceCard({
   service = {
     title: "AI Image/Video Generation",
     slug: "ai-image-video-generation",
-    summary: "Direct state-of-the-art models to create bespoke visuals beyond the camera.",
+    summary: "Directly leverage state-of-the-art AI models to create bespoke visuals from scratch, then polish them cinematically for maximum impact.",
   },
 }: {
   service?: Service
