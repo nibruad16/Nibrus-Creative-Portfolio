@@ -51,6 +51,7 @@ export type VideoProject = {
   youtubeId?: string      // accept ID…
   youtubeUrl?: string     // …or full URL
   cover?: string
+  videos?: { src: string; title?: string }[]
 }
 
 export type ImageProject = {
@@ -78,6 +79,29 @@ export const categories: string[] = [
 
 // Replace your projects array items with this shape (keep your real items)
 export const projects: Project[] = [
+
+{
+    type: "video",
+    slug: "veo3-generated",
+    title: "Veo 3 — AI Generated Videos",
+    category: "AI Video",
+    description: "A collection of creative videos generated with Veo 3, showcasing AI video synthesis and storytelling.",
+    videos: [
+      { src: "/videos/anime_videos/Vo3%20Videos/4.mp4", title: "Veo 3 Video 4" },
+      { src: "/videos/anime_videos/Vo3%20Videos/5.mp4", title: "Veo 3 Video 5" },
+      { src: "/videos/anime_videos/Vo3%20Videos/6.mp4", title: "Veo 3 Video 6" },
+      { src: "/videos/anime_videos/Vo3%20Videos/7.mp4", title: "Veo 3 Video 7" },
+      { src: "/videos/anime_videos/Vo3%20Videos/9.mp4", title: "Veo 3 Video 9" },
+      { src: "/videos/anime_videos/Vo3%20Videos/download%20(1).mp4", title: "Veo 3 Download 1" },
+      { src: "/videos/anime_videos/Vo3%20Videos/download.mp4", title: "Veo 3 Download" },
+      { src: "/videos/anime_videos/Vo3%20Videos/Of_course_creating_202508151810.mp4", title: "Of Course Creating" },
+      { src: "/videos/anime_videos/Vo3%20Videos/video%202.mp4", title: "Veo 3 Video 2" },
+      { src: "/videos/anime_videos/Vo3%20Videos/video%203.mp4", title: "Veo 3 Video 3" },
+      { src: "/videos/anime_videos/Vo3%20Videos/video%20one.mp4", title: "Veo 3 Video One" },
+    ],
+    cover: "/videos/anime_videos/Vo3%20Videos/4.mp4", // You can use a static image if you prefer
+  },
+
   {
     type: "video",
     slug: "brand-launch-spot",
@@ -200,6 +224,7 @@ export const projects: Project[] = [
       { src: "/Picters/AI%20images%20collections/IMG_5367.PNG", caption: "IMG 5367" },
     ],
   },
+  
 
   // ...keep/add your real projects here...
 ]

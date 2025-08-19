@@ -14,6 +14,7 @@ export const metadata: Metadata = {
     icon: "/profile-nibru.jpg?v=2",
     shortcut: "/profile-nibru.jpg?v=2",
     apple: "/profile-nibru.jpg?v=2",
+    
   },
   openGraph: {
     title: "Nibru Kefyalew",

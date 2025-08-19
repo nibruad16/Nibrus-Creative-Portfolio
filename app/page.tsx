@@ -113,6 +113,7 @@ export default function Page() {
                 <li>Goal, audience, and references</li>
                 <li>Footage status (shot vs. to be generated)</li>
                 <li>Timeline and budget range</li>
+                
               </ul>
             </div>
             <div className="flex flex-col gap-3">
