@@ -25,7 +25,8 @@ export default function Page() {
             ctaPrimary={{ href: "#projects", label: "View Work", icon: "Play" }}
             ctaSecondary={{ href: "#contact", label: "Start a Project", icon: "Sparkles" }}
             videoSrc="https://res.cloudinary.com/dbdwavjez/video/upload/q_auto,f_auto,w_960/v1755177584/FIna_480_hero_bbn0ck.mp4"
-            subtitle="AI Video & Image Specialist | UGC | VSL | Meta Ads Expert "
+            title="AI Video & Image Specialist | UGC | VSL | Meta Ads Expert "
+            subtitle="I create stunning, impossible visuals that tell a story."
           />
       </header>
 
