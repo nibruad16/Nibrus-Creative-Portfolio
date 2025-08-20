@@ -2,6 +2,16 @@ import type { Service } from "@/components/service-card"
 // import type { Project } from "@/components/project-card" // remove this line
 import { Film, Stars, Scissors, Megaphone } from "lucide-react"
 
+export interface ServiceInclude {
+  title: string
+  slug: string
+  summary: string
+  icon: React.ComponentType<any>
+  image: string
+  includes: string[]
+  comingSoon?: boolean
+}
+
 export const services: Service[] = [
   {
     title: "AI Image/Video Generation",
@@ -41,32 +51,41 @@ export const services: Service[] = [
   },
 ]
 
-// Add/confirm this type shape
-export type VideoProject = {
+export interface VideoProjectVideo {
+  src: string
+  title?: string
+}
+
+export interface VideoProject {
   type: "video"
   slug: string
   title: string
   description?: string
   category?: string
-  youtubeId?: string      // accept ID…
-  youtubeUrl?: string     // …or full URL
+  youtubeId?: string
+  youtubeUrl?: string
   cover?: string
-  videos?: { src: string; title?: string }[]
+  videos?: VideoProjectVideo[]
 }
 
-export type ImageProject = {
+export interface ImageProjectImage {
+  src: string
+  caption?: string
+  prompt?: string
+}
+
+export interface ImageProject {
   type: "image"
   slug: string
   title: string
   description?: string
   category?: string
   cover: string
-  images: { src: string; caption?: string; prompt?: string }[]
+  images: ImageProjectImage[]
 }
 
 export type Project = VideoProject | ImageProject
 
-// Example categories (keep yours if already present)
 export const categories: string[] = [
   "Travel",
   "Luxury Branding",
@@ -77,7 +96,6 @@ export const categories: string[] = [
   "AI",
 ]
 
-// Replace your projects array items with this shape (keep your real items)
 export const projects: Project[] = [
 
 {
@@ -233,3 +251,5 @@ export const projects: Project[] = [
 export function getProjectBySlug(slug: string): Project | undefined {
   return projects.find((p) => p.slug === slug)
 }
+
+// Inside your ProjectDetail component, after getting the project:
