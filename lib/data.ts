@@ -252,4 +252,25 @@ export function getProjectBySlug(slug: string): Project | undefined {
   return projects.find((p) => p.slug === slug)
 }
 
-// Inside your ProjectDetail component, after getting the project:
+// Example usage for your ProjectDetail component (move this to a .tsx file):
+/*
+{project.type === "video" && project.videos && project.videos.length > 0 && (
+  <div className="grid gap-8 md:grid-cols-2">
+    {project.videos.map((vid, i) => (
+      <div key={i} className="mb-6">
+        <video
+          controls
+          src={vid.src}
+          className="w-full rounded-lg border border-white/10 bg-black"
+          poster={project.cover}
+        >
+          Your browser does not support the video tag.
+        </video>
+        {vid.title && (
+          <div className="mt-2 text-sm text-white/80">{vid.title}</div>
+        )}
+      </div>
+    ))}
+  </div>
+)}
+*/
