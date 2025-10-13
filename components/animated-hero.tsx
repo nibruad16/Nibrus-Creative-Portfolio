@@ -10,7 +10,7 @@ import { useEffect, useRef, useState } from "react"               // + hooks
 type CTA = { href: string; label: string; icon?: string }
 
 export function AnimatedHero({
-  title = "AI Video & Image Specialist Cinematic Post-Production",
+  title = "AI Content Creator & Video Ads Specialist | UGC, VSL,TikTok/Meta Expet",
   subtitle = "I create stunning, impossible visuals that tell a story.",
   ctaPrimary = { href: "#projects", label: "View Work" },
   ctaSecondary = { href: "#contact", label: "Start a Project" },

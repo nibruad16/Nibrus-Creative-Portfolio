@@ -15,6 +15,9 @@ export function extractYouTubeId(input: string): string | null {
       const parts = u.pathname.split("/").filter(Boolean)
       const i = parts.indexOf("embed")
       if (i >= 0 && parts[i + 1]) return parts[i + 1]
+      // Handle YouTube Shorts URLs
+      const shortsIndex = parts.indexOf("shorts")
+      if (shortsIndex >= 0 && parts[shortsIndex + 1]) return parts[shortsIndex + 1]
     }
   } catch {}
   return null

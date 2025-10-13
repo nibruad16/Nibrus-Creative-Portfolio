@@ -98,26 +98,45 @@ export const categories: string[] = [
 
 export const projects: Project[] = [
 
-{
+  {
     type: "video",
-    slug: "veo3-generated",
-    title: "Veo 3 — AI Generated Videos",
+    slug: "veo3-generated-1",
+    title: "Veo 3 — AI Generated Video 1",
     category: "AI Video",
-    description: "A collection of creative videos generated with Veo 3, showcasing AI video synthesis and storytelling.",
-    videos: [
-      { src: "/videos/anime_videos/Vo3%20Videos/4.mp4", title: "Veo 3 Video 4" },
-      { src: "/videos/anime_videos/Vo3%20Videos/5.mp4", title: "Veo 3 Video 5" },
-      { src: "/videos/anime_videos/Vo3%20Videos/6.mp4", title: "Veo 3 Video 6" },
-      { src: "/videos/anime_videos/Vo3%20Videos/7.mp4", title: "Veo 3 Video 7" },
-      { src: "/videos/anime_videos/Vo3%20Videos/9.mp4", title: "Veo 3 Video 9" },
-      { src: "/videos/anime_videos/Vo3%20Videos/download%20(1).mp4", title: "Veo 3 Download 1" },
-      { src: "/videos/anime_videos/Vo3%20Videos/download.mp4", title: "Veo 3 Download" },
-      { src: "/videos/anime_videos/Vo3%20Videos/Of_course_creating_202508151810.mp4", title: "Of Course Creating" },
-      { src: "/videos/anime_videos/Vo3%20Videos/video%202.mp4", title: "Veo 3 Video 2" },
-      { src: "/videos/anime_videos/Vo3%20Videos/video%203.mp4", title: "Veo 3 Video 3" },
-      { src: "/videos/anime_videos/Vo3%20Videos/video%20one.mp4", title: "Veo 3 Video One" },
-    ],
-    cover: "/videos/anime_videos/Vo3%20Videos/4.mp4", // You can use a static image if you prefer
+    description: "Creative video generated with Veo 3, showcasing AI video synthesis and storytelling.",
+    youtubeUrl: "https://youtube.com/shorts/51POeSNtcnc?feature=share",
+  },
+  {
+    type: "video",
+    slug: "veo3-generated-2",
+    title: "Veo 3 — AI Generated Video 2",
+    category: "AI Video",
+    description: "Creative video generated with Veo 3, showcasing AI video synthesis and storytelling.",
+    youtubeUrl: "https://youtube.com/shorts/YQ-_IPJ6_aU?feature=share",
+  },
+  {
+    type: "video",
+    slug: "veo3-generated-3",
+    title: "Veo 3 — AI Generated Video 3",
+    category: "AI Video",
+    description: "Creative video generated with Veo 3, showcasing AI video synthesis and storytelling.",
+    youtubeUrl: "https://youtube.com/shorts/cuMuTU2xSbQ?feature=share",
+  },
+  {
+    type: "video",
+    slug: "veo3-generated-4",
+    title: "Veo 3 — AI Generated Video 4",
+    category: "AI Video",
+    description: "Creative video generated with Veo 3, showcasing AI video synthesis and storytelling.",
+    youtubeUrl: "https://youtube.com/shorts/JuvQQhSZ9Gc?feature=share",
+  },
+  {
+    type: "video",
+    slug: "veo3-generated-5",
+    title: "Veo 3 — AI Generated Video 5",
+    category: "AI Video",
+    description: "Creative video generated with Veo 3, showcasing AI video synthesis and storytelling.",
+    youtubeUrl: "https://youtube.com/shorts/bMvE0Ef-jQc?feature=share",
   },
 
   {
@@ -162,14 +181,7 @@ export const projects: Project[] = [
       },
     ],
   },
-  {
-    type: "video",
-    slug: "my-youtube-demo",
-    title: "Cinematic Movie Editing with Sound Design",
-    youtubeUrl: "https://youtu.be/9hmvcypEsHw",
-    description: "Demo video with description under the player.",
-    category: "Commercial",
-  },
+
   {
     type: "video",
     slug: "veo3-ad-1",

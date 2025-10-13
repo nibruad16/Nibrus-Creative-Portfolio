@@ -18,7 +18,7 @@ export function AnimatedHeroProfile() {
         transition={{ duration: 0.8 }}
         className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-amber-400 via-purple-400 to-white bg-clip-text text-transparent"
       >
-        AI Video & Image Specialist | Cinematic Post-Production
+        AI Content Creator & Video Ads Specialist | UGC, VSL,TikTok/Meta Expet
       </motion.h1>
       <motion.p
         initial={{ opacity: 0, y: 10 }}
