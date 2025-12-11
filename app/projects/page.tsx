@@ -1,15 +1,34 @@
 "use client"
 
-import { useMemo, useState } from "react"
+import { useMemo, useState, useEffect } from "react"
 import { Section } from "@/components/section"
 import { ProjectCard } from "@/components/project-card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { categories, projects } from "@/lib/data"
+import { categories } from "@/lib/data"
+import { getAllProjectsClient, type Project } from "@/lib/projects"
 
 export default function ProjectsPage() {
   const [active, setActive] = useState<string>("All")
   const [q, setQ] = useState("")
+  const [projects, setProjects] = useState<Project[]>([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    loadProjects()
+  }, [])
+
+  const loadProjects = async () => {
+    setLoading(true)
+    try {
+      const allProjects = await getAllProjectsClient()
+      setProjects(allProjects)
+    } catch (error) {
+      console.error("Error loading projects:", error)
+    } finally {
+      setLoading(false)
+    }
+  }
 
   const filtered = useMemo(() => {
     const lower = q.trim().toLowerCase()
@@ -23,7 +42,7 @@ export default function ProjectsPage() {
         String((p as any).category || "").toLowerCase() === active.toLowerCase()
       return inSearch && inCategory
     })
-  }, [active, q])
+  }, [active, q, projects])
 
   return (
     <main className="min-h-screen bg-black text-white">
@@ -59,16 +78,22 @@ export default function ProjectsPage() {
         </div>
 
         {/* Grid */}
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {filtered.map((p: any) => (
-            <ProjectCard key={p.slug} project={p} />
-          ))}
-        </div>
+        {loading ? (
+          <div className="text-center py-12 text-white/60">Loading projects...</div>
+        ) : (
+          <>
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {filtered.map((p: any) => (
+                <ProjectCard key={p.slug} project={p} />
+              ))}
+            </div>
 
-        {filtered.length === 0 && (
-          <div className="mt-8 text-center text-sm text-white/60">
-            No projects match your search.
-          </div>
+            {filtered.length === 0 && (
+              <div className="mt-8 text-center text-sm text-white/60">
+                No projects match your search.
+              </div>
+            )}
+          </>
         )}
       </Section>
     </main>

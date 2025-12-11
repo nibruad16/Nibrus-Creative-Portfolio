@@ -10,6 +10,7 @@ import { ContactForm } from "@/components/contact-form"
 import { services, projects, categories } from "@/lib/data"
 import { Suspense } from "react"
 import { ImageCarousel } from "@/components/image-carousel"
+import { ProjectsGridClient } from "@/components/projects-grid-client"
 
 export const metadata: Metadata = {
   title: "Nibru Kefyalew",
@@ -169,29 +170,5 @@ function ProjectsGrid() {
 
 // Small client component island
 function ClientProjectsGrid() {
-  return (
-    <div suppressHydrationWarning>
-      {/* We render all projects statically for now to avoid complex state in Next.js */}
-      <div className="mb-6 flex flex-wrap gap-2">
-        {categories.map((c) => (
-          <span
-            key={c}
-            className="select-none rounded-full border border-white/15 px-3 py-1 text-xs text-muted-foreground"
-          >
-            {c}
-          </span>
-        ))}
-      </div>
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {projects.map((p) => (
-          <ProjectCard key={p.slug} project={p} />
-        ))}
-      </div>
-      <div className="mt-8 flex">
-        <Button asChild variant="secondary">
-          <Link href="/projects">Browse all projects</Link>
-        </Button>
-      </div>
-    </div>
-  )
+  return <ProjectsGridClient />
 }

@@ -1,0 +1,91 @@
+[
+  {
+    "type": "video",
+    "title": "New videp",
+    "slug": "veo-3",
+    "category": "AI Video",
+    "youtubeUrl": "https://www.youtube.com/watch?v=CtyaXmi8yX8&list=PLzWotcQeQmhgfITs2AYMYa51txHLW5Xch&index=7",
+    "description": "Test Project"
+  },
+  {
+    "type": "image",
+    "title": "Queen of Phoenix",
+    "slug": "queen-of-phoenix",
+    "category": "AI",
+    "cover": "/uploads/1765368731125_Gemini_Generated_Image_5isaf5isaf5isaf5.png",
+    "images": [
+      {
+        "src": "/uploads/1765368731125_Gemini_Generated_Image_5isaf5isaf5isaf5.png"
+      },
+      {
+        "src": "/uploads/1765368731103_Gemini_Generated_Image_sd1f1ssd1f1ssd1f.png"
+      },
+      {
+        "src": "/uploads/1765368731234_Gemini_Generated_Image_pix8klpix8klpix8.png"
+      },
+      {
+        "src": "/uploads/1765368731160_Gemini_Generated_Image_audne9audne9audn.png"
+      },
+      {
+        "src": "/uploads/1765368731087_Gemini_Generated_Image_t4rks6t4rks6t4rk.png"
+      },
+      {
+        "src": "/uploads/1765368731345_Gemini_Generated_Image_fidj55fidj55fidj.png"
+      },
+      {
+        "src": "/uploads/1765368731740_Gemini_Generated_Image_83nmwi83nmwi83nm.png"
+      },
+      {
+        "src": "/uploads/1765368731711_Gemini_Generated_Image_munl0umunl0umunl.png"
+      },
+      {
+        "src": "/uploads/1765368731762_Gemini_Generated_Image_na2em9na2em9na2e.png"
+      }
+    ]
+  },
+  {
+    "type": "image",
+    "title": "Test",
+    "slug": "test",
+    "category": "AI",
+    "cover": "/uploads/1765435003281_50_Years_old_Black_Women_4.png",
+    "images": [
+      {
+        "src": "/uploads/1765435003281_50_Years_old_Black_Women_4.png"
+      },
+      {
+        "src": "/uploads/1765435003287_50_Years_old_Black_Women_3.png"
+      },
+      {
+        "src": "/uploads/1765435003291_50_Years_old_Black_Women.png"
+      },
+      {
+        "src": "/uploads/1765435003299_50_Years_old_Black_Women_2.png"
+      },
+      {
+        "src": "/uploads/1765435003318_African_woman_Yellow_mat_1.png"
+      },
+      {
+        "src": "/uploads/1765435003305_African_woman_Yellow_mat_2.png"
+      },
+      {
+        "src": "/uploads/1765435003513_African_woman_Yellow_mat_5.png"
+      },
+      {
+        "src": "/uploads/1765435003493_African_woman_Yellow_mat_3.png"
+      },
+      {
+        "src": "/uploads/1765435003506_African_woman_Yellow_mat_4.png"
+      },
+      {
+        "src": "/uploads/1765435003526_African_woman_Yellow_mat_6.png"
+      },
+      {
+        "src": "/uploads/1765435003605_African_woman_Yellow_mat_7.png"
+      },
+      {
+        "src": "/uploads/1765435003614_African_woman_Yellow_mat_8.png"
+      }
+    ]
+  }
+]
