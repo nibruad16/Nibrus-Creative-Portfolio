@@ -49,7 +49,8 @@ export default function AdminPage() {
     description: "",
     images: [],
   })
-  const [uploading, setUploading] = useState(false)
+  const [uploadingCount, setUploadingCount] = useState(0)
+  const isUploading = uploadingCount > 0
   const [message, setMessage] = useState<{ type: "success" | "error"; text: string } | null>(null)
 
   // Load projects from API
@@ -79,12 +80,20 @@ export default function AdminPage() {
 
   const currentSlug = projectType === "video" ? videoForm.slug : imageForm.slug
   const slugExists = useMemo(
-    () => projects.some((p) => p.slug === slugify(currentSlug || "")),
-    [projects, currentSlug],
+    () =>
+      projects.some(
+        (p) =>
+          p.slug ===
+          slugify(
+            (currentSlug || "").trim() ||
+              (projectType === "video" ? videoForm.title : imageForm.title),
+          ),
+      ),
+    [projects, currentSlug, projectType, videoForm.title, imageForm.title],
   )
 
   const handleImageUpload = async (file: File) => {
-    setUploading(true)
+    setUploadingCount((c) => c + 1)
     try {
       const formData = new FormData()
       formData.append("file", file)
@@ -108,7 +117,7 @@ export default function AdminPage() {
     } catch (error: any) {
       setMessage({ type: "error", text: error.message || "Failed to upload image" })
     } finally {
-      setUploading(false)
+      setUploadingCount((c) => Math.max(0, c - 1))
     }
   }
 
@@ -404,7 +413,7 @@ export default function AdminPage() {
                 <div className="flex items-center gap-3">
                   <label className="flex cursor-pointer items-center gap-2 rounded border border-white/10 bg-black/40 px-4 py-2 text-sm transition-colors hover:bg-black/60">
                     <Upload className="h-4 w-4" />
-                    {uploading ? "Uploading..." : "Choose Images"}
+                    {isUploading ? "Uploading..." : "Choose Images"}
                     <input
                       type="file"
                       accept="image/*"
@@ -414,7 +423,7 @@ export default function AdminPage() {
                         const files = Array.from(e.target.files || [])
                         files.forEach((file) => handleImageUpload(file))
                       }}
-                      disabled={uploading}
+                      disabled={isUploading}
                     />
                   </label>
                   <span className="text-xs text-white/60">
