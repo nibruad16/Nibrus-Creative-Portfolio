@@ -1,109 +1,147 @@
-import { NextResponse } from "next/server"
-import { readFile, writeFile, mkdir } from "fs/promises"
-import { join } from "path"
-import type { Project } from "@/lib/data"
+import { NextRequest, NextResponse } from 'next/server'
+import { supabaseAdmin } from '@/lib/supabase/server'
 
-const PROJECTS_FILE = join(process.cwd(), "data", "projects.json")
-
-// Ensure data directory exists
-async function ensureDataDir() {
-  const dataDir = join(process.cwd(), "data")
+// GET all projects or a single project by slug
+export async function GET(request: NextRequest) {
   try {
-    await mkdir(dataDir, { recursive: true })
-  } catch (error: any) {
-    if (error.code !== "EEXIST") throw error
-  }
-}
-
-// GET - Fetch all projects
-export async function GET() {
-  try {
-    await ensureDataDir()
-    const data = await readFile(PROJECTS_FILE, "utf-8").catch(() => "[]")
-    const projects = JSON.parse(data)
-    return NextResponse.json(projects)
-  } catch (error) {
-    console.error("Error reading projects:", error)
-    return NextResponse.json([], { status: 200 })
-  }
-}
-
-// POST - Add a new project
-export async function POST(request: Request) {
-  try {
-    await ensureDataDir()
-    
-    // Read existing projects
-    const existingData = await readFile(PROJECTS_FILE, "utf-8").catch(() => "[]")
-    const existingProjects: Project[] = JSON.parse(existingData)
-    
-    // Get new project from request
-    const newProject: Project = await request.json()
-    
-    // Validate required fields
-    if (!newProject.slug || !newProject.title) {
-      return NextResponse.json(
-        { error: "Slug and title are required" },
-        { status: 400 }
-      )
-    }
-    
-    // Check for duplicate slug
-    if (existingProjects.some((p) => p.slug === newProject.slug)) {
-      return NextResponse.json(
-        { error: "Project with this slug already exists" },
-        { status: 400 }
-      )
-    }
-    
-    // Add new project
-    existingProjects.push(newProject)
-    
-    // Write back to file
-    await writeFile(PROJECTS_FILE, JSON.stringify(existingProjects, null, 2), "utf-8")
-    
-    return NextResponse.json({ success: true, project: newProject }, { status: 201 })
-  } catch (error) {
-    console.error("Error saving project:", error)
-    return NextResponse.json(
-      { error: "Failed to save project" },
-      { status: 500 }
-    )
-  }
-}
-
-// DELETE - Remove a project
-export async function DELETE(request: Request) {
-  try {
-    await ensureDataDir()
-    
     const { searchParams } = new URL(request.url)
-    const slug = searchParams.get("slug")
-    
-    if (!slug) {
-      return NextResponse.json(
-        { error: "Slug is required" },
-        { status: 400 }
-      )
+    const slug = searchParams.get('slug')
+    const includeUnpublished = searchParams.get('includeUnpublished') === 'true'
+
+    if (slug) {
+      // Get single project by slug
+      let query = supabaseAdmin
+        .from('projects')
+        .select('*')
+        .eq('slug', slug)
+        .single()
+
+      const { data, error } = await query
+
+      if (error) {
+        return NextResponse.json({ error: error.message }, { status: 404 })
+      }
+
+      return NextResponse.json(data)
+    } else {
+      // Get all projects
+      let query = supabaseAdmin
+        .from('projects')
+        .select('*')
+        .order('created_at', { ascending: false })
+
+      if (!includeUnpublished) {
+        query = query.eq('published', true)
+      }
+
+      const { data, error } = await query
+
+      if (error) {
+        return NextResponse.json({ error: error.message }, { status: 500 })
+      }
+
+      return NextResponse.json(data)
     }
-    
-    // Read existing projects
-    const existingData = await readFile(PROJECTS_FILE, "utf-8").catch(() => "[]")
-    const existingProjects: Project[] = JSON.parse(existingData)
-    
-    // Remove project
-    const filtered = existingProjects.filter((p) => p.slug !== slug)
-    
-    // Write back to file
-    await writeFile(PROJECTS_FILE, JSON.stringify(filtered, null, 2), "utf-8")
-    
-    return NextResponse.json({ success: true }, { status: 200 })
   } catch (error) {
-    console.error("Error deleting project:", error)
     return NextResponse.json(
-      { error: "Failed to delete project" },
+      { error: 'Internal server error' },
       { status: 500 }
     )
   }
 }
 
+// POST - Create new project
+export async function POST(request: NextRequest) {
+  try {
+    const body = await request.json()
+
+    // Validate required fields
+    if (!body.type || !body.slug || !body.title) {
+      return NextResponse.json(
+        { error: 'Missing required fields: type, slug, title' },
+        { status: 400 }
+      )
+    }
+
+    const { data, error } = await supabaseAdmin
+      .from('projects')
+      .insert([body])
+      .select()
+      .single()
+
+    if (error) {
+      return NextResponse.json({ error: error.message }, { status: 500 })
+    }
+
+    return NextResponse.json(data, { status: 201 })
+  } catch (error) {
+    return NextResponse.json(
+      { error: 'Internal server error' },
+      { status: 500 }
+    )
+  }
+}
+
+// PUT - Update existing project
+export async function PUT(request: NextRequest) {
+  try {
+    const body = await request.json()
+    const { id, ...updateData } = body
+
+    if (!id) {
+      return NextResponse.json(
+        { error: 'Project ID is required' },
+        { status: 400 }
+      )
+    }
+
+    const { data, error } = await supabaseAdmin
+      .from('projects')
+      .update(updateData)
+      .eq('id', id)
+      .select()
+      .single()
+
+    if (error) {
+      return NextResponse.json({ error: error.message }, { status: 500 })
+    }
+
+    return NextResponse.json(data)
+  } catch (error) {
+    return NextResponse.json(
+      { error: 'Internal server error' },
+      { status: 500 }
+    )
+  }
+}
+
+// DELETE - Delete project
+export async function DELETE(request: NextRequest) {
+  try {
+    const { searchParams } = new URL(request.url)
+    const id = searchParams.get('id')
+
+    if (!id) {
+      return NextResponse.json(
+        { error: 'Project ID is required' },
+        { status: 400 }
+      )
+    }
+
+    const { error } = await supabaseAdmin
+      .from('projects')
+      .delete()
+      .eq('id', id)
+
+    if (error) {
+      return NextResponse.json({ error: error.message }, { status: 500 })
+    }
+
+    return NextResponse.json({ success: true })
+  } catch (error) {
+    return NextResponse.json(
+      { error: 'Internal server error' },
+      { status: 500 }
+    )
+  }
+}

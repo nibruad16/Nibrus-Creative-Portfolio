@@ -1,73 +1,92 @@
-import { NextResponse } from "next/server"
-import { writeFile, mkdir } from "fs/promises"
-import { join } from "path"
-import { existsSync } from "fs"
+import { NextRequest, NextResponse } from 'next/server'
+import { supabaseAdmin } from '@/lib/supabase/server'
 
-const UPLOAD_DIR = join(process.cwd(), "public", "uploads")
-
-// Ensure upload directory exists
-async function ensureUploadDir() {
-  if (!existsSync(UPLOAD_DIR)) {
-    await mkdir(UPLOAD_DIR, { recursive: true })
-  }
-}
-
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   try {
-    await ensureUploadDir()
-
     const formData = await request.formData()
-    const file = formData.get("file") as File
+    const file = formData.get('file') as File
 
     if (!file) {
-      return NextResponse.json({ error: "No file provided" }, { status: 400 })
-    }
-
-    // Validate file type
-    const validTypes = ["image/jpeg", "image/jpg", "image/png", "image/webp", "image/gif"]
-    if (!validTypes.includes(file.type)) {
       return NextResponse.json(
-        { error: "Invalid file type. Only images are allowed." },
-        { status: 400 }
-      )
-    }
-
-    // Validate file size (max 10MB)
-    const maxSize = 10 * 1024 * 1024 // 10MB
-    if (file.size > maxSize) {
-      return NextResponse.json(
-        { error: "File too large. Maximum size is 10MB." },
+        { error: 'No file provided' },
         { status: 400 }
       )
     }
 
     // Generate unique filename
     const timestamp = Date.now()
-    const sanitizedName = file.name.replace(/[^a-zA-Z0-9.-]/g, "_")
-    const filename = `${timestamp}_${sanitizedName}`
-    const filepath = join(UPLOAD_DIR, filename)
+    const fileExt = file.name.split('.').pop()
+    const fileName = `${timestamp}-${Math.random().toString(36).substring(7)}.${fileExt}`
+    const filePath = `uploads/${fileName}`
 
-    // Convert file to buffer and save
+    // Convert file to buffer
     const bytes = await file.arrayBuffer()
     const buffer = Buffer.from(bytes)
-    await writeFile(filepath, buffer)
 
-    // Return the public URL
-    const publicUrl = `/uploads/${filename}`
+    // Upload to Supabase Storage
+    const { data, error } = await supabaseAdmin.storage
+      .from('project-media')
+      .upload(filePath, buffer, {
+        contentType: file.type,
+        upsert: false
+      })
 
-    return NextResponse.json({ 
-      success: true, 
+    if (error) {
+      console.error('Upload error:', error)
+      return NextResponse.json(
+        { error: error.message },
+        { status: 500 }
+      )
+    }
+
+    // Get public URL
+    const { data: { publicUrl } } = supabaseAdmin.storage
+      .from('project-media')
+      .getPublicUrl(filePath)
+
+    return NextResponse.json({
       url: publicUrl,
-      filename: filename 
-    }, { status: 200 })
-
+      path: filePath,
+      fileName: fileName
+    })
   } catch (error) {
-    console.error("Error uploading file:", error)
+    console.error('Upload error:', error)
     return NextResponse.json(
-      { error: "Failed to upload file" },
+      { error: 'Internal server error' },
       { status: 500 }
     )
   }
 }
 
+// DELETE - Remove file from storage
+export async function DELETE(request: NextRequest) {
+  try {
+    const { searchParams } = new URL(request.url)
+    const path = searchParams.get('path')
 
+    if (!path) {
+      return NextResponse.json(
+        { error: 'File path is required' },
+        { status: 400 }
+      )
+    }
+
+    const { error } = await supabaseAdmin.storage
+      .from('project-media')
+      .remove([path])
+
+    if (error) {
+      return NextResponse.json(
+        { error: error.message },
+        { status: 500 }
+      )
+    }
+
+    return NextResponse.json({ success: true })
+  } catch (error) {
+    return NextResponse.json(
+      { error: 'Internal server error' },
+      { status: 500 }
+    )
+  }
+}
