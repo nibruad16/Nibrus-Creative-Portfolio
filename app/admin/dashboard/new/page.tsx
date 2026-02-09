@@ -1,7 +1,8 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
+import { supabase } from '@/lib/supabase/client'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -28,6 +29,7 @@ export default function NewProjectPage() {
     const router = useRouter()
     const [loading, setLoading] = useState(false)
     const [uploading, setUploading] = useState(false)
+    const [authLoading, setAuthLoading] = useState(true)
 
     // Form state
     const [type, setType] = useState<'video' | 'image'>('video')
@@ -40,6 +42,25 @@ export default function NewProjectPage() {
     const [cover, setCover] = useState('')
     const [videos, setVideos] = useState<VideoItem[]>([])
     const [images, setImages] = useState<ImageItem[]>([])
+
+    // Check authentication on mount
+    useEffect(() => {
+        checkAuth()
+    }, [])
+
+    const checkAuth = async () => {
+        try {
+            const { data: { session } } = await supabase.auth.getSession()
+            if (!session) {
+                router.push('/admin')
+                return
+            }
+        } catch (error) {
+            console.error('Auth check error:', error)
+        } finally {
+            setAuthLoading(false)
+        }
+    }
 
     // Auto-generate slug from title
     const handleTitleChange = (value: string) => {
@@ -147,6 +168,15 @@ export default function NewProjectPage() {
 
     const removeImage = (index: number) => {
         setImages(images.filter((_, i) => i !== index))
+    }
+
+    // Show loading while checking authentication
+    if (authLoading) {
+        return (
+            <div className="min-h-screen bg-black flex items-center justify-center">
+                <Loader2 className="w-8 h-8 animate-spin text-white" />
+            </div>
+        )
     }
 
     return (
