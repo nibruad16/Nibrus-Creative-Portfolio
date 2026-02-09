@@ -155,7 +155,7 @@ export default function NewProjectPage() {
 
             <div className="relative">
                 {/* Header */}
-                <header className="border-b border-white/10 bg-black/50 backdrop-blur-xl sticky top-0 z-50">
+                <header className="border-b border-white/10 bg-black/80 backdrop-blur-xl sticky top-16 z-40">
                     <div className="container mx-auto px-4 py-4">
                         <Link href="/admin/dashboard">
                             <Button variant="ghost" className="text-white hover:bg-white/5">
@@ -170,7 +170,7 @@ export default function NewProjectPage() {
                 <main className="container mx-auto px-4 py-8 max-w-4xl">
                     <Card className="border-white/10 bg-black/50 backdrop-blur-xl">
                         <CardHeader>
-                            <CardTitle className="text-2xl text-white">Create New Project</CardTitle>
+                            <CardTitle className="text-2xl bg-gradient-to-r from-orange-400 to-amber-400 bg-clip-text text-transparent">Create New Project</CardTitle>
                             <CardDescription className="text-white/60">
                                 Add a new project to your portfolio
                             </CardDescription>
@@ -389,7 +389,7 @@ export default function NewProjectPage() {
                                     <Button
                                         type="submit"
                                         disabled={loading}
-                                        className="flex-1 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600"
+                                        className="flex-1 bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white"
                                     >
                                         {loading ? (
                                             <>

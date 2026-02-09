@@ -132,21 +132,21 @@ export default function AdminDashboard() {
 
             <div className="relative">
                 {/* Header */}
-                <header className="border-b border-white/10 bg-black/50 backdrop-blur-xl sticky top-0 z-50">
+                <header className="border-b border-white/10 bg-black/80 backdrop-blur-xl sticky top-16 z-40">
                     <div className="container mx-auto px-4 py-4 flex items-center justify-between">
                         <div>
-                            <h1 className="text-2xl font-bold text-white">Admin Dashboard</h1>
+                            <h1 className="text-2xl font-bold bg-gradient-to-r from-orange-400 to-amber-400 bg-clip-text text-transparent">Admin Dashboard</h1>
                             <p className="text-sm text-white/60">Manage your portfolio projects</p>
                         </div>
                         <div className="flex items-center gap-3">
                             <Link href="/admin/dashboard/new">
-                                <Button className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600">
+                                <Button className="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white">
                                     <Plus className="w-4 h-4 mr-2" />
                                     New Project
                                 </Button>
                             </Link>
                             <Link href="/admin/dashboard/settings">
-                                <Button variant="outline" className="border-white/10 text-white hover:bg-white/5">
+                                <Button variant="outline" className="border-orange-500/30 text-orange-400 hover:bg-orange-500/10">
                                     Settings
                                 </Button>
                             </Link>

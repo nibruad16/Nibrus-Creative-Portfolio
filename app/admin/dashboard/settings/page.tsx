@@ -79,7 +79,7 @@ export default function SettingsPage() {
 
             <div className="relative">
                 {/* Header */}
-                <header className="border-b border-white/10 bg-black/50 backdrop-blur-xl sticky top-0 z-50">
+                <header className="border-b border-white/10 bg-black/80 backdrop-blur-xl sticky top-16 z-40">
                     <div className="container mx-auto px-4 py-4 flex items-center justify-between">
                         <div className="flex items-center gap-4">
                             <Link href="/admin/dashboard">
@@ -89,8 +89,8 @@ export default function SettingsPage() {
                                 </Button>
                             </Link>
                             <div>
-                                <h1 className="text-2xl font-bold text-white flex items-center gap-2">
-                                    <SettingsIcon className="w-6 h-6" />
+                                <h1 className="text-2xl font-bold bg-gradient-to-r from-orange-400 to-amber-400 bg-clip-text text-transparent flex items-center gap-2">
+                                    <SettingsIcon className="w-6 h-6 text-orange-400" />
                                     Site Settings
                                 </h1>
                                 <p className="text-sm text-white/60">Customize your portfolio</p>
@@ -99,7 +99,7 @@ export default function SettingsPage() {
                         <Button
                             onClick={handleSave}
                             disabled={saving}
-                            className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600"
+                            className="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white"
                         >
                             {saving ? (
                                 <>
