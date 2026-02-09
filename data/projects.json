@@ -87,5 +87,20 @@
         "src": "/uploads/1765435003614_African_woman_Yellow_mat_8.png"
       }
     ]
+  },
+  {
+    "type": "image",
+    "title": "Bluse",
+    "slug": "bluse",
+    "category": "AI",
+    "cover": "/uploads/1767366169810_df5149c2-62ec-4a9b-8248-b3b6c23f6fae.png",
+    "images": [
+      {
+        "src": "/uploads/1767366169810_df5149c2-62ec-4a9b-8248-b3b6c23f6fae.png"
+      },
+      {
+        "src": "/uploads/1767366169780_be52b80b-b0e0-4454-a672-2f25b6fda5db.png"
+      }
+    ]
   }
 ]

@@ -1,4 +1,8 @@
-import { projects as staticProjects, type Project } from "./data"
+import { projects as staticProjects } from "./data"
+import type { Project as DataProject } from "./data"
+
+// Re-export Project type for consumers
+export type Project = DataProject
 
 // Fetch projects from API (admin-added projects)
 async function fetchApiProjects(): Promise<Project[]> {
