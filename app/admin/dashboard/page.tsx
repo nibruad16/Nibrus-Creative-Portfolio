@@ -145,6 +145,11 @@ export default function AdminDashboard() {
                                     New Project
                                 </Button>
                             </Link>
+                            <Link href="/admin/dashboard/settings">
+                                <Button variant="outline" className="border-white/10 text-white hover:bg-white/5">
+                                    Settings
+                                </Button>
+                            </Link>
                             <Button variant="outline" onClick={handleLogout} className="border-white/10 text-white hover:bg-white/5">
                                 <LogOut className="w-4 h-4 mr-2" />
                                 Logout
@@ -209,8 +214,8 @@ export default function AdminDashboard() {
                                         >
                                             {/* Project Icon */}
                                             <div className={`w-12 h-12 rounded-lg flex items-center justify-center ${project.type === 'video'
-                                                    ? 'bg-blue-500/20 text-blue-400'
-                                                    : 'bg-purple-500/20 text-purple-400'
+                                                ? 'bg-blue-500/20 text-blue-400'
+                                                : 'bg-purple-500/20 text-purple-400'
                                                 }`}>
                                                 {project.type === 'video' ? (
                                                     <Video className="w-6 h-6" />
