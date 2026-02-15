@@ -12,30 +12,64 @@ import { Suspense } from "react"
 import { ImageCarousel } from "@/components/image-carousel"
 import { ProjectsGridClient } from "@/components/projects-grid-client"
 
-export const metadata: Metadata = {
-  title: "Nibru Kefyalew",
-  description: "I create stunning, impossible visuals that tell a story.",
+// Fetch settings from API
+async function getSettings() {
+  try {
+    // Use absolute URL for server-side fetching
+    const baseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
+      ? 'http://localhost:3000'
+      : process.env.VERCEL_URL
+        ? `https://${process.env.VERCEL_URL}`
+        : 'http://localhost:3000'
+
+    const res = await fetch(`${baseUrl}/api/settings`, {
+      cache: 'no-store' // Always get fresh data
+    })
+    if (!res.ok) return null
+    return await res.json()
+  } catch (error) {
+    console.error('Error fetching settings:', error)
+    return null
+  }
 }
 
-export default function Page() {
+export async function generateMetadata(): Promise<Metadata> {
+  const settings = await getSettings()
+
+  return {
+    title: settings?.site_title || "Nibru Kefyalew",
+    description: settings?.site_description || "I create stunning, impossible visuals that tell a story.",
+  }
+}
+
+export default async function Page() {
+  const settings = await getSettings()
   return (
     <main className="min-h-screen bg-black text-white">
       {/* Removed <Navbar /> because it's now in layout.tsx */}
       <header id="home" className="relative overflow-hidden">
-          <AnimatedHero
-            ctaPrimary={{ href: "#projects", label: "View Work", icon: "Play" }}
-            ctaSecondary={{ href: "#contact", label: "Start a Project", icon: "Sparkles" }}
-            videoSrc="https://res.cloudinary.com/dbdwavjez/video/upload/q_auto,f_auto,w_960/v1755177584/FIna_480_hero_bbn0ck.mp4"
-            title="AI Content Creator & Video Ads Specialist | UGC, VSL,TikTok/Meta Expet"
-            subtitle="I create stunning, impossible visuals that tell a story."
-          />
+        <AnimatedHero
+          ctaPrimary={{
+            href: settings?.hero_cta_primary_link || "#projects",
+            label: settings?.hero_cta_primary_text || "View Work",
+            icon: "Play"
+          }}
+          ctaSecondary={{
+            href: settings?.hero_cta_secondary_link || "#contact",
+            label: settings?.hero_cta_secondary_text || "Start a Project",
+            icon: "Sparkles"
+          }}
+          videoSrc={settings?.hero_video_url || "https://res.cloudinary.com/dbdwavjez/video/upload/q_auto,f_auto,w_960/v1755177584/FIna_480_hero_bbn0ck.mp4"}
+          title={settings?.hero_title || "AI Content Creator & Video Ads Specialist | UGC, VSL,TikTok/Meta Expet"}
+          subtitle={settings?.hero_subtitle || "I create stunning, impossible visuals that tell a story."}
+        />
       </header>
 
       <Section
         id="about"
         eyebrow="About"
-        title="A Results-Driven Video Producer"
-        description="I combine cinematic editing techniques with AI-driven tools to create ad creatives and storytelling videos that capture attention and convert. Technology accelerates the process  strategy and storytelling drive the results."
+        title={settings?.about_title || "A Results-Driven Video Producer"}
+        description={settings?.about_description || "I combine cinematic editing techniques with AI-driven tools to create ad creatives and storytelling videos that capture attention and convert. Technology accelerates the process  strategy and storytelling drive the results."}
       >
         <div className="grid gap-8 md:grid-cols-2 items-start">
           <div className="space-y-6 text-muted-foreground md:order-1">
@@ -61,7 +95,7 @@ export default function Page() {
           <div className="flex justify-center md:justify-end md:order-2">
             <ImageCarousel />
           </div>
-      
+
         </div>
       </Section>
 
@@ -73,9 +107,9 @@ export default function Page() {
       >
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {services.map((s) => (
-            <ServiceCard key={s.slug} service={s} />  
+            <ServiceCard key={s.slug} service={s} />
           ))}
-        </div>  
+        </div>
 
         <div className="mt-10 grid gap-6 md:grid-cols-3">
           <div className="rounded-xl border border-white/10 p-6">
@@ -116,27 +150,27 @@ export default function Page() {
                 <li>Goal, audience, and references</li>
                 <li>Footage status (shot vs. to be generated)</li>
                 <li>Timeline and budget range</li>
-                
+
               </ul>
             </div>
             <div className="flex flex-col gap-3">
               <a
-                href="mailto:nibruad16@gmail.com"
+                href={`mailto:${settings?.contact_email || 'nibruad16@gmail.com'}`}
                 className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-white"
               >
-                <Mail className="h-4 w-4" /> nibruad16@gmail.com
+                <Mail className="h-4 w-4" /> {settings?.contact_email || 'nibruad16@gmail.com'}
               </a>
               <a
-                href="tel:+251993231617"
-                className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-white"
-              > 
-                <Phone className="h-4 w-4" /> +251 993231617
-              </a>
-              <a
-                href="tel:+251946942006"
+                href={`tel:${settings?.contact_phone_primary || '+251993231617'}`}
                 className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-white"
               >
-                <Phone className="h-4 w-4" /> +251 946942006
+                <Phone className="h-4 w-4" /> {settings?.contact_phone_primary || '+251 993231617'}
+              </a>
+              <a
+                href={`tel:${settings?.contact_phone_secondary || '+251946942006'}`}
+                className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-white"
+              >
+                <Phone className="h-4 w-4" /> {settings?.contact_phone_secondary || '+251 946942006'}
               </a>
             </div>
           </div>
