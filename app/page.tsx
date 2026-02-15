@@ -12,20 +12,41 @@ import { Suspense } from "react"
 import { ImageCarousel } from "@/components/image-carousel"
 import { ProjectsGridClient } from "@/components/projects-grid-client"
 
+// Force dynamic rendering to always fetch fresh settings
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
+
+
 // Fetch settings from API
 async function getSettings() {
   try {
-    // Use absolute URL for server-side fetching
-    const baseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
-      ? 'http://localhost:3000'
-      : process.env.VERCEL_URL
-        ? `https://${process.env.VERCEL_URL}`
-        : 'http://localhost:3000'
+    // Determine base URL based on environment
+    let baseUrl = ''
+
+    if (typeof window === 'undefined') {
+      // Server-side rendering
+      if (process.env.NODE_ENV === 'production') {
+        // Production: use deployed URL (Netlify provides URL env var)
+        baseUrl = process.env.URL ||
+          process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` :
+          '' // Fallback to relative URL
+      } else {
+        // Development
+        baseUrl = 'http://localhost:3000'
+      }
+    }
+    // Client-side: use relative URL (empty string)
 
     const res = await fetch(`${baseUrl}/api/settings`, {
-      cache: 'no-store' // Always get fresh data
+      cache: 'no-store',
+      next: { revalidate: 0 }
     })
-    if (!res.ok) return null
+
+    if (!res.ok) {
+      console.error('Failed to fetch settings:', res.status)
+      return null
+    }
+
     return await res.json()
   } catch (error) {
     console.error('Error fetching settings:', error)
