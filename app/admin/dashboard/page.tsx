@@ -150,7 +150,7 @@ export default function AdminDashboard() {
                                     Settings
                                 </Button>
                             </Link>
-                            <Button variant="outline" onClick={handleLogout} className="border-white/10 text-white hover:bg-white/5">
+                            <Button variant="outline" onClick={handleLogout} className="border-orange-500/30 text-orange-400 hover:bg-orange-500/10">
                                 <LogOut className="w-4 h-4 mr-2" />
                                 Logout
                             </Button>

@@ -120,10 +120,30 @@ export default function SettingsPage() {
                 <main className="container mx-auto px-4 py-8 max-w-5xl">
                     <Tabs defaultValue="general" className="space-y-6">
                         <TabsList className="bg-white/5 border border-white/10">
-                            <TabsTrigger value="general">General</TabsTrigger>
-                            <TabsTrigger value="hero">Hero Section</TabsTrigger>
-                            <TabsTrigger value="about">About</TabsTrigger>
-                            <TabsTrigger value="contact">Contact</TabsTrigger>
+                            <TabsTrigger
+                                value="general"
+                                className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-orange-500 data-[state=active]:to-amber-500 data-[state=active]:text-white text-white/60 hover:text-white/80 transition-all"
+                            >
+                                General
+                            </TabsTrigger>
+                            <TabsTrigger
+                                value="hero"
+                                className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-orange-500 data-[state=active]:to-amber-500 data-[state=active]:text-white text-white/60 hover:text-white/80 transition-all"
+                            >
+                                Hero Section
+                            </TabsTrigger>
+                            <TabsTrigger
+                                value="about"
+                                className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-orange-500 data-[state=active]:to-amber-500 data-[state=active]:text-white text-white/60 hover:text-white/80 transition-all"
+                            >
+                                About
+                            </TabsTrigger>
+                            <TabsTrigger
+                                value="contact"
+                                className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-orange-500 data-[state=active]:to-amber-500 data-[state=active]:text-white text-white/60 hover:text-white/80 transition-all"
+                            >
+                                Contact
+                            </TabsTrigger>
                         </TabsList>
 
                         {/* General Settings */}
