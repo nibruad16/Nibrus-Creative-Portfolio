@@ -1,22 +1,35 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { supabaseAdmin } from '@/lib/supabase/server'
+import { requireAdmin } from '@/lib/supabase/admin-auth'
 
 // GET all projects or a single project by slug
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url)
+    const id = searchParams.get('id')
     const slug = searchParams.get('slug')
-    const includeUnpublished = searchParams.get('includeUnpublished') === 'true'
+    const wantsUnpublished = searchParams.get('includeUnpublished') === 'true'
 
-    if (slug) {
-      // Get single project by slug
+    // Lookups by id and unpublished drafts are admin-only
+    if (id || wantsUnpublished) {
+      const denied = await requireAdmin(request)
+      if (denied) return denied
+    }
+    const includeUnpublished = Boolean(id) || wantsUnpublished
+
+    if (id || slug) {
+      // Get single project by id or slug
       let query = supabaseAdmin
         .from('projects')
         .select('*')
-        .eq('slug', slug)
-        .single()
 
-      const { data, error } = await query
+      query = id ? query.eq('id', id) : query.eq('slug', slug!)
+
+      if (!includeUnpublished) {
+        query = query.eq('published', true)
+      }
+
+      const { data, error } = await query.single()
 
       if (error) {
         return NextResponse.json({ error: error.message }, { status: 404 })
@@ -52,6 +65,9 @@ export async function GET(request: NextRequest) {
 
 // POST - Create new project
 export async function POST(request: NextRequest) {
+  const denied = await requireAdmin(request)
+  if (denied) return denied
+
   try {
     const body = await request.json()
 
@@ -84,6 +100,9 @@ export async function POST(request: NextRequest) {
 
 // PUT - Update existing project
 export async function PUT(request: NextRequest) {
+  const denied = await requireAdmin(request)
+  if (denied) return denied
+
   try {
     const body = await request.json()
     const { id, ...updateData } = body
@@ -117,6 +136,9 @@ export async function PUT(request: NextRequest) {
 
 // DELETE - Delete project
 export async function DELETE(request: NextRequest) {
+  const denied = await requireAdmin(request)
+  if (denied) return denied
+
   try {
     const { searchParams } = new URL(request.url)
     const id = searchParams.get('id')

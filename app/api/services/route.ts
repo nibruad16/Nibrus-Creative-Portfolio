@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { supabaseAdmin } from '@/lib/supabase/server'
+import { requireAdmin } from '@/lib/supabase/admin-auth'
 
 // GET all services
 export async function GET() {
@@ -24,6 +25,9 @@ export async function GET() {
 
 // POST - Create new service
 export async function POST(request: NextRequest) {
+    const denied = await requireAdmin(request)
+    if (denied) return denied
+
     try {
         const body = await request.json()
 
@@ -48,6 +52,9 @@ export async function POST(request: NextRequest) {
 
 // PUT - Update service
 export async function PUT(request: NextRequest) {
+    const denied = await requireAdmin(request)
+    if (denied) return denied
+
     try {
         const body = await request.json()
         const { id, ...updateData } = body
@@ -81,6 +88,9 @@ export async function PUT(request: NextRequest) {
 
 // DELETE - Delete service
 export async function DELETE(request: NextRequest) {
+    const denied = await requireAdmin(request)
+    if (denied) return denied
+
     try {
         const { searchParams } = new URL(request.url)
         const id = searchParams.get('id')

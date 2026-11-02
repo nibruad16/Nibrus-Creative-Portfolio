@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase/client'
+import { adminFetch } from '@/lib/supabase/admin-fetch'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -33,7 +34,7 @@ export default function SettingsPage() {
 
     const loadSettings = async () => {
         try {
-            const response = await fetch('/api/settings')
+            const response = await adminFetch('/api/settings')
             const data = await response.json()
             setSettings(data)
         } catch (error) {
@@ -46,7 +47,7 @@ export default function SettingsPage() {
     const handleSave = async () => {
         setSaving(true)
         try {
-            const response = await fetch('/api/settings', {
+            const response = await adminFetch('/api/settings', {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(settings)

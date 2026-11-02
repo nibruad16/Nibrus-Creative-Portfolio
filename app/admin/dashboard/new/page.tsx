@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase/client'
+import { adminFetch } from '@/lib/supabase/admin-fetch'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -52,10 +53,8 @@ export default function NewProjectPage() {
         try {
             const { data: { session } } = await supabase.auth.getSession()
             if (!session) {
-                console.warn('No active session - you may need to log in')
-                // Temporarily allow access for debugging
-                // router.push('/admin')
-                // return
+                router.push('/admin')
+                return
             }
         } catch (error) {
             console.error('Auth check error:', error)
@@ -82,7 +81,7 @@ export default function NewProjectPage() {
             const formData = new FormData()
             formData.append('file', file)
 
-            const response = await fetch('/api/upload', {
+            const response = await adminFetch('/api/upload', {
                 method: 'POST',
                 body: formData,
             })
@@ -124,7 +123,7 @@ export default function NewProjectPage() {
                 images: type === 'image' && images.length > 0 ? images : null,
             }
 
-            const response = await fetch('/api/projects', {
+            const response = await adminFetch('/api/projects', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(projectData),

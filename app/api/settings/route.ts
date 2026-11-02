@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { supabaseAdmin } from '@/lib/supabase/server'
+import { requireAdmin } from '@/lib/supabase/admin-auth'
 
 // GET site settings
 export async function GET() {
@@ -42,6 +43,9 @@ export async function GET() {
 
 // PUT - Update site settings
 export async function PUT(request: NextRequest) {
+    const denied = await requireAdmin(request)
+    if (denied) return denied
+
     try {
         const body = await request.json()
         console.log('Updating settings with:', body)

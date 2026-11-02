@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase/client'
+import { adminFetch } from '@/lib/supabase/admin-fetch'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import {
@@ -62,7 +63,7 @@ export default function AdminDashboard() {
 
     const loadProjects = async () => {
         try {
-            const response = await fetch('/api/projects?includeUnpublished=true')
+            const response = await adminFetch('/api/projects?includeUnpublished=true')
             const data = await response.json()
             setProjects(data)
         } catch (error) {
@@ -82,7 +83,7 @@ export default function AdminDashboard() {
 
         setDeleting(true)
         try {
-            const response = await fetch(`/api/projects?id=${deleteId}`, {
+            const response = await adminFetch(`/api/projects?id=${deleteId}`, {
                 method: 'DELETE',
             })
 
@@ -99,7 +100,7 @@ export default function AdminDashboard() {
 
     const togglePublished = async (project: Project) => {
         try {
-            const response = await fetch('/api/projects', {
+            const response = await adminFetch('/api/projects', {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({

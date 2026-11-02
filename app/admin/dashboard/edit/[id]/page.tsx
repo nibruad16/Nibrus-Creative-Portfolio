@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import { useRouter, useParams } from 'next/navigation'
 import { supabase } from '@/lib/supabase/client'
+import { adminFetch } from '@/lib/supabase/admin-fetch'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -37,10 +38,12 @@ export default function EditProjectPage() {
 
     const loadProject = async () => {
         try {
-            const response = await fetch(`/api/projects?id=${projectId}`)
+            const response = await adminFetch(`/api/projects?id=${projectId}`)
             const data = await response.json()
-            if (Array.isArray(data) && data.length > 0) {
-                setProject(data[0])
+            if (response.ok) {
+                setProject(data)
+            } else {
+                toast.error(data.error || 'Failed to load project')
             }
         } catch (error) {
             console.error('Error loading project:', error)
@@ -56,7 +59,7 @@ export default function EditProjectPage() {
             const formData = new FormData()
             formData.append('file', file)
 
-            const response = await fetch('/api/upload', {
+            const response = await adminFetch('/api/upload', {
                 method: 'POST',
                 body: formData
             })
@@ -100,7 +103,7 @@ export default function EditProjectPage() {
     const handleSave = async () => {
         setSaving(true)
         try {
-            const response = await fetch('/api/projects', {
+            const response = await adminFetch('/api/projects', {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(project)
